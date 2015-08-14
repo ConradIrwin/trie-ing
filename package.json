@@ -1,0 +1,6 @@
+{
+ "name": "trie-ing",
+ "version": "0.0.1",
+ "description": "The trie from node-autocompleter in a form that can be used in browser",
+ "main": "index.js"
+}
