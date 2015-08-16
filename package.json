@@ -1,6 +1,14 @@
 {
- "name": "trie-ing",
- "version": "0.0.1",
- "description": "The trie from node-autocompleter in a form that can be used in browser",
- "main": "index.js"
+  "name": "trie-ing",
+  "version": "0.0.1",
+  "description": "The trie from node-autocompleter in a form that can be used in browser",
+  "main": "index.js",
+  "devDependencies": {
+    "karma": "^0.13.9",
+    "karma-mocha": "^0.2.0",
+    "mocha": "^2.2.5"
+  },
+  "scripts": {
+    "test": "mocha test/*_test.js"
+  }
 }
