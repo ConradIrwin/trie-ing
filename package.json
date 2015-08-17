@@ -1,6 +1,6 @@
 {
   "name": "trie-ing",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "The trie from node-autocompleter in a form that can be used in browser",
   "main": "index.js",
   "devDependencies": {
