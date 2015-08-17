@@ -4,6 +4,7 @@
   "description": "The trie from node-autocompleter in a form that can be used in browser",
   "main": "index.js",
   "devDependencies": {
+    "benchmark": "^1.0.0",
     "karma": "^0.13.9",
     "karma-mocha": "^0.2.0",
     "mocha": "^2.2.5"
