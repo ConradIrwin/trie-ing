@@ -16,6 +16,7 @@ Trie = function () {
  * a .key property that is a non-empty string.
  * a .score property that is a positive number.
  * a .value property that is opaque (and returned by the prefixSearch method)
+ * a .distinct property that is used to distinguish between multiple values that have the same key.
  */
 Trie.prototype.add = function (item) {
     this.root.add(item, 0);
@@ -46,7 +47,7 @@ Trie.prototype.prefixSearch = function (prefix, opts) {
     }
 
     if (node) {
-        node.getSortedResults(opts.limit, results, new PQueue(opts.limit, !!opts.unique));
+        node.getSortedResults(results, opts, new PQueue(opts.limit));
     }
 
     return results;
