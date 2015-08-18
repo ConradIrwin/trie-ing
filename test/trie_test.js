@@ -120,5 +120,23 @@ describe('Trie', function () {
         assert.deepEqual([4], t.prefixSearch("abc", {limit: 1}));
 
     });
+
+    it("should be able to prefix match with tails", function () {
+
+        t = new Trie();
+        t.add({
+            key: 'sarah',
+            value: 1,
+            score: 1
+        });
+
+        t.add({
+            key: 'shashi',
+            value: 2,
+            score: 2
+        });
+
+        assert.deepEqual([2], t.prefixSearch("sha"));
+    });
 });
 
