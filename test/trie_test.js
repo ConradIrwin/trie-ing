@@ -120,5 +120,69 @@ describe('Trie', function () {
         assert.deepEqual([4], t.prefixSearch("abc", {limit: 1}));
 
     });
+
+    it("should be able to prefix match with tails", function () {
+
+        t = new Trie();
+        t.add({
+            key: 'sarah',
+            value: 1,
+            score: 1
+        });
+
+        t.add({
+            key: 'shashi',
+            value: 2,
+            score: 2
+        });
+
+        assert.deepEqual([2], t.prefixSearch("sha"));
+    });
+
+    it("should be able to unique even if multiple values have the same score", function () {
+        t = new Trie()
+
+        t.add({
+            key: "abc",
+            value: 1,
+            score: 1
+        });
+
+        t.add({
+            key: "acc",
+            value: 1,
+            score: 1
+        });
+
+        t.add({
+            key: "abb",
+            value: 1,
+            score: 1
+        });
+
+        assert.deepEqual([1,1,1], t.prefixSearch("a", {unique: true}));
+
+    });
+
+    it("should be able to distinguish between distinct keys", function () {
+        var t = new Trie();
+
+        t.add({
+            key: "aaa",
+            distinct: "b",
+            score: 1,
+            value: 1
+        });
+
+        t.add({
+            key: "aaa",
+            distinct: "c",
+            score: 2,
+            value: 2
+        });
+
+        assert.deepEqual([2,1], t.prefixSearch("a", {unique: true}))
+
+    });
 });
 
