@@ -184,5 +184,33 @@ describe('Trie', function () {
         assert.deepEqual([2,1], t.prefixSearch("a", {unique: true}))
 
     });
+
+    it("should be able to distinguish between distinct keys", function () {
+        var t = new Trie();
+
+        t.add({
+            key: "aaa",
+            distinct: "b",
+            score: 3,
+            value: 3
+        });
+
+        t.add({
+            key: "aaa",
+            distinct: "b",
+            score: 2,
+            value: 2
+        });
+
+        t.add({
+            key: "aaa",
+            distinct: "c",
+            score: 1,
+            value: 1
+        });
+
+        assert.deepEqual([3,1], t.prefixSearch("a", {unique: true, limit: 2}))
+
+    });
 });
 
