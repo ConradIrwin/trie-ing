@@ -5,7 +5,7 @@ Introduction
 
 Yet another trie? "Why?" I hear you cry! I know, it's trie-ing...
 
-For [Superhuman](https://superhuman.com) we're building a product focussed around speed and
+For [Superhuman](http://superhuman.com) we're building a product focussed around speed and
 productivity. To do this we need to run an auto-completer over your contacts, ordered by how
 recently you contacted them.
 
