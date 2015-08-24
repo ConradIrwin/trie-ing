@@ -1,13 +1,13 @@
-Node = require('./lib/node');
-PQueue = require('./lib/pqueue');
+var Node = require('./lib/node');
+var PQueue = require('./lib/pqueue');
 
 /**
  * A Trie optimized for weighted autocompletion returning a small number
  * of results.
  */
-Trie = function () {
+var Trie = function () {
     this.root = new Node();
-}
+};
 
 /**
  * Add a new item to the auto-completer.
@@ -20,7 +20,7 @@ Trie = function () {
  */
 Trie.prototype.add = function (item) {
     this.root.add(item, 0);
-}
+};
 
 /**
  * Prefix search terms in the auto-completer.
@@ -39,11 +39,11 @@ Trie.prototype.prefixSearch = function (prefix, opts) {
     var node = this.root.findPrefix(prefix, 0);
 
     if (!opts) {
-        opts = {}
+        opts = {};
     }
 
     if (opts.limit == null) {
-        opts.limit = 1/0;
+        opts.limit = 1 / 0;
     }
 
     if (node) {
@@ -51,6 +51,6 @@ Trie.prototype.prefixSearch = function (prefix, opts) {
     }
 
     return results;
-}
+};
 
 module.exports = Trie;
