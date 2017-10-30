@@ -4,9 +4,22 @@ var PQueue = require('./lib/pqueue');
 /**
  * A Trie optimized for weighted autocompletion returning a small number
  * of results.
+ *
+ * It can take an optional ({maxWidth: X}) parameter. This parameter is
+ * set relatively large because we care a lot about indexing time, and
+ * lookup is so fast that slowing it down by a factor of 10 is still
+ * fast enough for more most use-cases.
+ *
+ * NOTE: The factor only affects the first lookup for any given prefix,
+ * after a trie mutation. After that the widthFactor is mostly irrelevant.
  */
-var Trie = function () {
+var Trie = function (options) {
     this.root = new Node();
+    if (options && options.maxWidth) {
+      this.maxWidth = options.maxWidth;
+    } else {
+      this.maxWidth = 500;
+    }
 };
 
 /**
@@ -19,7 +32,7 @@ var Trie = function () {
  * a .distinct property that is used to distinguish between multiple values that have the same key.
  */
 Trie.prototype.add = function (item) {
-    this.root.add(item, 0);
+    this.root.add(item, 0, this.maxWidth);
 };
 
 /**
@@ -46,9 +59,11 @@ Trie.prototype.prefixSearch = function (prefix, opts) {
         opts.limit = 1 / 0;
     }
 
-    if (node) {
-        node.getSortedResults(results, opts, new PQueue(opts.limit));
+    if (!node) {
+      return results;
     }
+
+    node.getSortedResults(prefix, results, opts, new PQueue(opts.limit));
 
     return results;
 };
